@@ -8,7 +8,6 @@ const instructors = useInstructors();
 // It should return an array of just the students who are in that cohort
 export const getStudentsInCohort = cohort => {
     let temp = students.filter(x => x.cohort === cohort)
-    console.log(temp)
     return temp
 }
 // Export a function called getFullTimeStudents
@@ -41,9 +40,10 @@ const getStudentInstructors = x => {
     return temp
 }
 export const getAvailableInstructors = () => {
-    let active = getStudentInstructors(students)
+    //get active instructors
+    let active = students.map(x => x.instructorId)
+    // look at list of instructors and get those that are no in active array
     let something = instructors.filter( x=> !active.includes(x.id))
-    console.log("active", active, "something", something)
     return something
 }
 // Export a function called getStudentsByLanguage
@@ -63,3 +63,21 @@ export const getStudentsByLanguage = language => {
 // It should accept an array of strings as a parameter named `languages`
 // It should return an array of students who know ALL of the given languages
 // Ex: getStudentsByLanguages(["Javascript", "C#"])
+const langHelpter = (student, languages) => {
+    let lanArray = student.languages
+    let know = true
+    languages.forEach(element => {
+        if(!lanArray.includes(element)){
+            know = false
+        }
+    });
+    return know
+}
+export const getStudentsByLanguages = languages => {
+    return students.filter(x => {
+        if(langHelpter(x, languages)){
+            return x
+        }
+    })
+}
+// console.log(getStudentsByLanguages(["Javascript", "C#"]))

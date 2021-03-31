@@ -32,7 +32,6 @@ export const getStudentByLastName = lastName => {
 // Ex: getStudentByName("Summer SMITH")
 export const getStudentByName = fullName => {
     let name = fullName.toLowerCase().split(" ")
-    console.log(name)
     return students.find(x => { 
         return name[0] === x.firstName.toLowerCase() && name[1].toLowerCase() === x.lastName.toLowerCase()
     })
