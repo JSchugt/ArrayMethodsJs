@@ -32,13 +32,6 @@ export const getPolyglotStudents = languageCount => {
 // Export a function called getAvailableInstructors
 // It should not accept any parameters
 // It should return an array of instructors that don't have any students
-const getStudentInstructors = x => {
-    let temp = []
-    for(const instructor of x){
-        temp.push(instructor.instructorId)
-    }
-    return temp
-}
 export const getAvailableInstructors = () => {
     //get active instructors
     let active = students.map(x => x.instructorId)
